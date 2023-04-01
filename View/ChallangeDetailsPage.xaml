@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImproveMe.View.TaskDetailsPage"
+             Title="TaskDetails">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="+">
+            
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,Auto,*">
+        <BoxView
+                BackgroundColor="{StaticResource Primary}"
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"/>
+
+        
+            <Label 
+                   Style="{StaticResource LargeLabel}"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource LightBackground}"
+                   Text="Task" 
+                   HorizontalOptions="Center"
+                   Padding="0,20,0,8"/>
+            <!--<Image Aspect="AspectFill"
+                        HeightRequest="160"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Source="{Binding Monkey.Image}"
+                        WidthRequest="160"/>-->
+
+
+
+        <Grid RowDefinitions="*, *"  Grid.Row="2" Padding="10" >
+            <!-- Add this -->
+            <Button Grid.Column="0">
+                
+            </Button>
+            <Label Style="{StaticResource MediumLabel}"
+                   Grid.Column="1"
+                   TextColor="Black"
+                   BackgroundColor="{StaticResource DarkBackground}"
+                   FontAttributes="Bold"
+                   Text="Task1s" 
+                   HorizontalOptions="CenterAndExpand"/>
+            
+                
+        </Grid>
+    </Grid>
+</ContentPage>
