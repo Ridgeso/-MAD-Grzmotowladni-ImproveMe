@@ -1,11 +1,5 @@
-﻿using ImproveMe.Enums;
-using SQLite;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace ImproveMe.Model;
 
 namespace ImproveMe.Model
 {
@@ -29,5 +23,4 @@ namespace ImproveMe.Model
         public long BadgeId { get; set; }
 
 
-    }
 }

@@ -1,25 +1,24 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ImproveMe.Services
+namespace ImproveMe.Services;
+
+public class ChallangeService
 {
-    public class ChallangeService
-    {
-        SQLiteAsyncConnection Database;
-        private readonly UserService _userService;
-        public ChallangeService(UserService userService)
-        {
-            _userService = userService;
-        }
+    SQLiteAsyncConnection Database;
 
-        async Task Init()
-        {
-            if (Database is not null)
-                return;
+    private readonly UserService _userService;
+
+    List<Challange> m_Challanges;
+
+    public ChallangeService(UserService userService)
+    {
+        _userService = userService;
+    }
+
+    async Task Init()
+    {
+        if (Database is not null)
+            return;
 
             Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
             var result = await Database.CreateTableAsync<Challange>();
@@ -40,5 +39,19 @@ namespace ImproveMe.Services
             return new Challange();
         }
 
+    public async Task<Challange> CreateChallangeAsync()
+    {
+        await Init();
+        var user = new Challange() {
+            Name = "Zadanie",
+            Description = "Moja codzienna rutyna",
+            Type = TaskType.Routine,
+            Start = DateOnly.MaxValue,
+            Checked = DateOnly.MinValue
+        };
+
+        await Database.InsertAsync(user);
+        return await GetChallangeAsync();
     }
+
 }

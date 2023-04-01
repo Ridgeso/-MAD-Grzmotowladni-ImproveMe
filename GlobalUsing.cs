@@ -3,6 +3,7 @@ global using CommunityToolkit.Mvvm.Input;
 global using ImproveMe.View;
 global using ImproveMe.Model;
 global using ImproveMe.ViewModel;
+global using ImproveMe.Enums;
 global using ImproveMe.DTO.Challange;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
