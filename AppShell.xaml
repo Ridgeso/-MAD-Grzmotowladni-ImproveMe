@@ -10,5 +10,6 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:UserDetailsPage}"
         Route="UserDetailsPage" />
+    
 
 </Shell>
