@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImproveMe.ViewModel
+namespace ImproveMe.Services
 {
-    public  class AddTaskViewModel
+    public class ChallangeService
     {
     }
 }

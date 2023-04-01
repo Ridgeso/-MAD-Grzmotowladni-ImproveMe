@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="sqlite-net-standard" Version="1.5.1" />
 	</ItemGroup>
@@ -59,9 +60,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="View\AddTaskPage.xaml.cs">
-	    <DependentUpon>AddTaskPage.xaml</DependentUpon>
-	  </Compile>
+	  <MauiXaml Update="View\AddTaskPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ImproveMe.Model
 {
-    public class Task
+    public class Challange
     {
         public ulong Id { get; set; }
         public string Name { get; set; }

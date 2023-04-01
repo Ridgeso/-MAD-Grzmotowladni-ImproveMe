@@ -27,15 +27,20 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<MainViewModel>();
 
-
         builder.Services.AddTransient<TaskDetailsPage>();
         builder.Services.AddTransient<TaskDetailsViewModel>();
 
         builder.Services.AddTransient<UserDetailsPage>();
         builder.Services.AddTransient<UserDetailsViewModel>();
 
-        builder.Services.AddTransient<AppTaskPage>();
-        builder.Services.AddTransient<AddTaskViewModel>();
+        builder.Services.AddSingleton<AddTaskPage>();
+        builder.Services.AddSingleton<AddTaskViewModel>();
+
+        builder.Services.AddSingleton<>();
+
+        builder.Services.AddSingleton<ChallangeService>();
+		builder.Services.AddSingleton<UserService>();
+		builder.Services.AddSingleton<BadgeService>();
 
         return builder.Build();
 	}
