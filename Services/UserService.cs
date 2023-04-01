@@ -1,54 +1,48 @@
 ﻿using ImproveMe.Model;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ImproveMe.Services
+namespace ImproveMe.Services;
+
+public class UserService
 {
-    public class UserService
+    SQLiteAsyncConnection Database;
+    public UserService() { }
+    async Task Init()
     {
-        SQLiteAsyncConnection Database;
-        public UserService() { }
-        async Task Init()
+        if (Database is not null)
+            return;
+
+        Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+        var result = await Database.CreateTableAsync<User>();
+
+        var user = await GetUserAsync();
+        if(user is null)
         {
-            if (Database is not null)
-                return;
-
-            Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            var result = await Database.CreateTableAsync<User>();
-
-            var user = await GetUserAsync();
-            if(user is null)
-            {
-                await CreateUserAsync();
-            }
+            await CreateUserAsync();
         }
-
-        public async Task<User> GetUserAsync()
-        {
-            await Init();
-            return await Database.Table<User>().FirstOrDefaultAsync();
-        }
-
-        public async Task<User> CreateUserAsync()
-        {
-            await Init();
-            var user = new User()
-            {
-                Name = "Jan",
-                LastName = "Kowalski",
-                Points = 0,
-                Level = 1,
-                LastLogged = new(),
-                Streak = 0
-            };
-
-            await Database.InsertAsync(user);
-            return await GetUserAsync();
-        }
-
     }
+
+    public async Task<User> GetUserAsync()
+    {
+        await Init();
+        return await Database.Table<User>().FirstOrDefaultAsync();
+    }
+
+    public async Task<User> CreateUserAsync()
+    {
+        await Init();
+        var user = new User()
+        {
+            Name = "Jan",
+            LastName = "Kowalski",
+            Points = 0,
+            Level = 1,
+            LastLogged = new(),
+            Streak = 0
+        };
+
+        await Database.InsertAsync(user);
+        return await GetUserAsync();
+    }
+
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ImproveMe.ViewModel
 {
-    public  class TaskDetailsViewModel
+    public partial class TaskDetailsViewModel
     {
+
     }
 }
