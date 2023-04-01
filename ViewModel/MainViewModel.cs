@@ -60,6 +60,18 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    async Task GoToUserDetails(User user)
+    {
+        if (user == null)
+            return;
+
+        await Shell.Current.GoToAsync(nameof(UserDetailsPage), true, new Dictionary<string, object>
+        {
+            { "User", user }
+        });
+    }
+
+    [RelayCommand]
     async Task GoToAddChallange()
     {
         await Shell.Current.GoToAsync(
