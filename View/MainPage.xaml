@@ -7,7 +7,9 @@
     xmlns:model="clr-namespace:ImproveMe.Model"
 
     Title="{Binding Title}">
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="/Resources/Images/user.png"/>
+    </ContentPage.ToolbarItems>
     <Grid
         ColumnDefinitions="*,*"
         ColumnSpacing="10"
@@ -18,7 +20,8 @@
         <RefreshView
             Grid.ColumnSpan="3"
             Command="{Binding GetChallangesCommand}"
-            IsRefreshing="{Binding IsRefreshing}">
+            IsRefreshing="{Binding IsRefreshing}"
+            IsEnabled="False">
             <ContentView>
 
                 <CollectionView
@@ -49,7 +52,8 @@
                                                 CommandParameter="{Binding .}"/>
                                     </Frame.GestureRecognizers>
 
-                                    <Grid Padding="0" ColumnDefinitions="125,*">
+                                    <Grid Padding="0" ColumnDefinitions="125,*" 
+                                          BackgroundColor="{StaticResource Secondary}">
                                         <VerticalStackLayout
                                                 VerticalOptions="Center"
                                                 Grid.Column="1"
