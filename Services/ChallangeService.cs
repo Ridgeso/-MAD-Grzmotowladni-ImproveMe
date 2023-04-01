@@ -3,18 +3,18 @@ using ImproveMe.DTO.Challange;
 using ImproveMe.Enums;
 using SQLite;
 
-namespace ImproveMe.Services
+namespace ImproveMe.Services;
+
+public class ChallangeService
 {
-    public class ChallangeService
+    SQLiteAsyncConnection Database;
+    private readonly UserService _userService;
+    private readonly BadgeService _badgeService;
+    public ChallangeService(UserService userService, BadgeService badgeService)
     {
-        SQLiteAsyncConnection Database;
-        private readonly UserService _userService;
-        private readonly BadgeService _badgeService;
-        public ChallangeService(UserService userService, BadgeService badgeService)
-        {
-            _userService = userService;
-            _badgeService = badgeService;
-        }
+        _userService = userService;
+        _badgeService = badgeService;
+    }
 
     async Task Init()
     {
@@ -36,31 +36,32 @@ namespace ImproveMe.Services
         await Init();
         var challange = new Challange()
         {
-            Name= dto.Name,
-            Description= dto.Description,
-            Start= dto.Start,
-            Type= dto.Type,
+            Name = dto.Name,
+            Description = dto.Description,
+            Start = dto.Start,
+            Type = dto.Type,
         };
         await Database.InsertAsync(challange);
 
-            var createBadgeDto = new CreateBadgeDto()
-            {
-                Name = dto.Name,
-                ChallangeId = challange.Id,
-                Rank = Rank.None,
-            };
+        var createBadgeDto = new CreateBadgeDto()
+        {
+            Name = dto.Name,
+            ChallangeId = challange.Id,
+            Rank = Rank.None,
+        };
 
-            var badge = await _badgeService.CreateBadgeAsync(createBadgeDto);
-            challange.BadgeId = badge.Id;
-            await Database.UpdateAsync(challange);
+        var badge = await _badgeService.CreateBadgeAsync(createBadgeDto);
+        challange.BadgeId = badge.Id;
+        await Database.UpdateAsync(challange);
 
-            return challange;
-        }
+        return challange;
+    }
 
     public async Task<Challange> CreateChallangeAsync()
     {
         await Init();
-        var user = new Challange() {
+        var user = new Challange()
+        {
             Name = "Zadanie",
             Description = "Moja codzienna rutyna",
             Type = ChallangeType.Routine,

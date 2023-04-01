@@ -51,7 +51,7 @@ namespace ImproveMe.ViewModel
                 if (Validate()) {
                     var res = await _challangeService.CreateChallangeAsync(createChallangeDto);
                     await Shell.Current.DisplayAlert("Sukces!", "Poprawnie dodano wyzwanie." , "Zatwierdź");
-                    await Shell.Current.GoToAsync(nameof(MainPage), true);
+                    await Shell.Current.GoToAsync("..", true);
                 }
             }
             catch (Exception ex)

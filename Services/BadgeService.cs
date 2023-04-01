@@ -15,22 +15,19 @@ public class BadgeService
         var result = await Database.CreateTableAsync<Badge>();
     }
 
-}
-        async public Task<Badge> CreateBadgeAsync(CreateBadgeDto dto)
+    async public Task<Badge> CreateBadgeAsync(CreateBadgeDto dto)
+    {
+        await Init();
+
+        var badge = new Badge()
         {
-            await Init();
+            Name = dto.Name,
+            ChallangeId = dto.ChallangeId,
+            Rank = dto.Rank,
+        };
 
-            var badge = new Badge()
-            {
-                Name = dto.Name,
-                ChallangeId = dto.ChallangeId,
-                Rank = dto.Rank,
-            };
+        await Database.InsertAsync(badge);
 
-            await Database.InsertAsync(badge);
-
-            return badge;
-        }
+        return badge;
     }
-
 }
