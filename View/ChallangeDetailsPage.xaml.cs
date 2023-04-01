@@ -1,9 +1,9 @@
 using ImproveMe.ViewModel;
 namespace ImproveMe.View;
 
-public partial class TaskDetailsPage : ContentPage
+public partial class ChallangeDetailsPage : ContentPage
 {
-	public TaskDetailsPage(ChallangeDetailsViewModel viewModel)
+	public ChallangeDetailsPage(ChallangeDetailsViewModel viewModel)
 	{
         BindingContext = viewModel;
         InitializeComponent();

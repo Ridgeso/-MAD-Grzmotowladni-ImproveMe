@@ -1,12 +1,14 @@
-﻿namespace ImproveMe;
+﻿using ImproveMe.View;
+
+namespace ImproveMe;
 
 public partial class AppShell : Shell
 {
 	public AppShell()
 	{
 		InitializeComponent();
-		Routing.RegisterRoute(nameof(AddChallangeViewModel), typeof(AddChallangeViewModel));
-		Routing.RegisterRoute(nameof(TaskDetailsViewModel), typeof(TaskDetailsViewModel));
-		Routing.RegisterRoute(nameof(UserDetailsViewModel), typeof(UserDetailsViewModel));
+		Routing.RegisterRoute(nameof(AddChallangePage), typeof(AddChallangePage));
+		Routing.RegisterRoute(nameof(ChallangeDetailsPage), typeof(ChallangeDetailsPage));
+		Routing.RegisterRoute(nameof(UserDetailsPage), typeof(UserDetailsPage));
     }
 }

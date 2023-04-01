@@ -3,7 +3,7 @@ using ImproveMe.Enums;
 using ImproveMe.Services;
 using ImproveMe.View;
 using Microsoft.Maui.Networking;
-using MonkeyFinder.ViewModel;
+using ImproveMe.ViewModel;
 
 namespace ImproveMe.ViewModel
 {
