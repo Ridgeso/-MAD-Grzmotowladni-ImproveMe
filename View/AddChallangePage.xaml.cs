@@ -2,11 +2,11 @@ using ImproveMe.ViewModel;
 
 namespace ImproveMe.View;
 
-public partial class AddTaskPage : ContentPage
+public partial class AddChallangePage : ContentPage
 {
-	public AddTaskPage(AddTaskViewModel viewModel)
+	public AddChallangePage(AddChallangeViewModel viewModel)
 	{
-        BindingContext = viewModel;
+        BindingContext = new AddChallangeViewModel();
         InitializeComponent();
 	}
 }

@@ -33,10 +33,8 @@ public static class MauiProgram
         builder.Services.AddTransient<UserDetailsPage>();
         builder.Services.AddTransient<UserDetailsViewModel>();
 
-        builder.Services.AddSingleton<AddTaskPage>();
-        builder.Services.AddSingleton<AddTaskViewModel>();
-
-        builder.Services.AddSingleton<>();
+        builder.Services.AddSingleton<AddChallangePage>();
+        builder.Services.AddSingleton<AddChallangeViewModel>();
 
         builder.Services.AddSingleton<ChallangeService>();
 		builder.Services.AddSingleton<UserService>();

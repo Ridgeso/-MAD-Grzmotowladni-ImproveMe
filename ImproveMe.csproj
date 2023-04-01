@@ -56,11 +56,16 @@
 
 	<ItemGroup>
 	  <Folder Include="Model\" />
-	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="View\AddTaskPage.xaml">
+	  <Compile Update="View\AddChallangePage.xaml.cs">
+	    <DependentUpon>AddChallangePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\AddChallangePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

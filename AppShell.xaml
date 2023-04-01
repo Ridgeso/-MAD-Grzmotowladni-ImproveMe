@@ -8,7 +8,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:AddTaskPage}"
-        Route="AddTaskPage" />
+        ContentTemplate="{DataTemplate local:AddChallangePage}"
+        Route="AddChallangePage" />
 
 </Shell>

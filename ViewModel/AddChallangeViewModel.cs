@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ImproveMe.ViewModel
 {
-    public partial class AddTaskViewModel : BaseViewModel
+    public partial class AddChallangeViewModel : BaseViewModel
     {
-        public AddTaskViewModel()
+        public AddChallangeViewModel()
         {
             Title = "Dodaj wyzwanie";
         }
