@@ -8,7 +8,7 @@ namespace ImproveMe
 {
     public static class Constants
     {
-        public const string DatabaseFilename = "TodoSQLite.db3";
+        public const string DatabaseFilename = "app-data.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode
@@ -18,14 +18,8 @@ namespace ImproveMe
             // enable multi-threaded database access
             SQLite.SQLiteOpenFlags.SharedCache;
 
-        public static string DatabasePath
-        {
-            get
-            {
-                var basePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                return Path.Combine(basePath, DatabaseFilename);
-            }
-        }
-            
+        public static string DatabasePath =>
+            Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
+
     }
 }

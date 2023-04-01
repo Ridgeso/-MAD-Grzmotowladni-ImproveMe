@@ -5,8 +5,30 @@
              xmlns:viewmodel="clr-namespace:ImproveMe.ViewModel"
              Title="{Binding Title}"
              >
-    <VerticalStackLayout>
-        <Label Text="{Binding Title}" />
-        <Label Text="abc" />
-    </VerticalStackLayout>
+    <Grid
+        Margin="10"
+        RowDefinitions="*,Auto"
+     >
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="16"    
+        >
+            <StackLayout Spacing="4">
+                <Label Text="Nazwa"/>
+                <Entry Placeholder="Nazwa" Text="{Binding Name}"/>
+                <Label Text="Nazwa nie może pozostać pusta" TextColor="Red" IsVisible="{Binding ShowNameError}"/>
+            </StackLayout>
+            <StackLayout Spacing="4">
+                <Label Text="Opis"/>
+                <Editor Placeholder="Opis" Text="{Binding Description}" AutoSize="TextChanges"/>
+                <Label Text="Opis nie może pozostać pusty" TextColor="Red" IsVisible="{Binding ShowDescriptionError}"/>
+            </StackLayout>
+            <StackLayout RadioButtonGroup.GroupName="type" RadioButtonGroup.SelectedValue="{Binding Type}">
+                <Label Text="Typ"/>
+                <RadioButton Content="Rutyna" Value="0" IsChecked="True"/>
+                <RadioButton Content="Abstynencja"  Value="1" />
+            </StackLayout>
+        </VerticalStackLayout>
+        <Button Grid.Row="1" Text="Zatwierdź" Command="{Binding SaveCommand}" IsEnabled="{Binding IsNotBusy}"/>
+    </Grid>
 </ContentPage>
