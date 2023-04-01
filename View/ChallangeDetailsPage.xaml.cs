@@ -1,3 +1,4 @@
+using ImproveMe.ViewModel;
 namespace ImproveMe.View;
 
 public partial class TaskDetailsPage : ContentPage
@@ -7,4 +8,5 @@ public partial class TaskDetailsPage : ContentPage
         BindingContext = viewModel;
         InitializeComponent();
 	}
+
 }

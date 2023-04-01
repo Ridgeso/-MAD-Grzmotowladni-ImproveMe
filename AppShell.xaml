@@ -8,7 +8,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:TaskDetailsPage}"
-        Route="TaskDetailsPage" />
+        ContentTemplate="{DataTemplate local:UserDetailsPage}"
+        Route="UserDetailsPage" />
 
 </Shell>

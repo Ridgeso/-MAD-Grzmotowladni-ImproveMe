@@ -1,4 +1,5 @@
-﻿using MonkeyFinder.ViewModel;
+﻿using ImproveMe.ViewModel;
+using ImproveMe.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace ImproveMe.ViewModel
 {
-    public  class ChallangeDetailsViewModel : BaseViewModel
+
+
+    public partial  class ChallangeDetailsViewModel : BaseViewModel
 
     {
-        
+
+        [ObservableProperty]
+        Challange challange;
+
     }
 }
