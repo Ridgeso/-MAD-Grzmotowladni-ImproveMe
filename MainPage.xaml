@@ -16,7 +16,7 @@
             Grid.Row="1"
             Grid.Column="0"
             Margin="8"
-            Command="{Binding GetMonkeysCommand}"
+            Command="{Binding GoToAddChallangeCommand}"
             IsEnabled="{Binding IsNotBusy}"
             Style="{StaticResource ButtonOutline}"
             Text="Add Task" />

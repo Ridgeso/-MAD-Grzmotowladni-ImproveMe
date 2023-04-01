@@ -1,5 +1,6 @@
 ﻿global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
+global using ImproveMe.View;
 global using ImproveMe.Model;
 global using ImproveMe.ViewModel;
 global using System.Collections.ObjectModel;

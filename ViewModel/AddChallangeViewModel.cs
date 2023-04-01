@@ -1,17 +1,21 @@
-﻿using MonkeyFinder.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace ImproveMe.ViewModel
+namespace ImproveMe.ViewModel;
+
+public partial class AddChallangeViewModel : BaseViewModel
 {
-    public partial class AddChallangeViewModel : BaseViewModel
+    public AddChallangeViewModel()
     {
-        public AddChallangeViewModel()
-        {
-            Title = "Dodaj wyzwanie";
-        }
+        Title = "Dodaj wyzwanie";
+    }
+
+    [RelayCommand]
+    async Task GoToAddChallange()
+    {
+        await Shell.Current.GoToAsync(
+            nameof(AddChallangePage),
+            true,
+            new Dictionary<string, object> { }
+        );
     }
 }
