@@ -55,6 +55,12 @@ public class ChallangeService
         return await Database.Table<Challange>().FirstOrDefaultAsync();
     }
 
+    public async Task<int> DeleteChallangeAsync(Challange challange)
+    {
+        await Init();
+        return await Database.DeleteAsync(challange);
+    }
+
     public async Task<List<Challange>> GetChellenges()
     {
         await Init();

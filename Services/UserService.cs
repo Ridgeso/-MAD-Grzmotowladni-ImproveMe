@@ -5,8 +5,9 @@ namespace ImproveMe.Services;
 
 public class UserService
 {
-    SQLiteAsyncConnection Database;
-    public UserService() { }
+    private SQLiteAsyncConnection Database;
+    public UserService() {
+    }
     async Task Init()
     {
         if (Database is not null)
@@ -37,12 +38,37 @@ public class UserService
             LastName = "Kowalski",
             Points = 0,
             Level = 1,
-            LastLogged = new(),
+            LastLogged = DateTime.Now,
             Streak = 0
         };
 
         await Database.InsertAsync(user);
         return await GetUserAsync();
     }
+
+    public async Task UpdateUser(User user)
+    {
+        await Init();
+        await Database.UpdateAsync(user);
+    }
+
+    public async Task<User> AddExpPoints(User user, uint exp)
+    {
+        await Init();
+
+        user.Points += exp;
+
+        user.Level = CalcLevel(user.Points, user.Level);
+
+        await UpdateUser(user);
+
+        return user;
+    }
+
+    private ushort CalcLevel(uint exp, ushort level)
+    {
+        return (ushort)((5+Math.Sqrt(25+2*exp))/10);
+    }
+
 
 }
