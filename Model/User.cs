@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace ImproveMe.Model
 {
     public class User
     {
-        public ulong Id { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public long Id { get; set; }
 
         public string Name { get; set; }
 
@@ -18,8 +20,8 @@ namespace ImproveMe.Model
 
         public ushort Level { get; set; }
 
-        public DateOnly LastLogged { get; set; }
-
-        public uint Streak { get; set;}
+        public DateTime LastLogged { get; set; }
+            
+        public uint Streak { get; set;} 
     }
 }

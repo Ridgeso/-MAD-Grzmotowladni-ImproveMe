@@ -1,17 +1,90 @@
-﻿using MonkeyFinder.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ImproveMe.Enums;
+using ImproveMe.Services;
+using Microsoft.Maui.Networking;
+using MonkeyFinder.ViewModel;
 
 namespace ImproveMe.ViewModel
 {
     public partial class AddChallangeViewModel : BaseViewModel
     {
-        public AddChallangeViewModel()
+        private readonly ChallangeService _challangeService;
+        private readonly UserService _userService;
+
+        [ObservableProperty]
+        string name;
+        
+        [ObservableProperty]
+        string description;
+        
+        [ObservableProperty]
+        int type;
+
+        [ObservableProperty]
+        bool showNameError = false;
+        
+        [ObservableProperty]
+        bool showDescriptionError = false;
+
+        public AddChallangeViewModel(ChallangeService challangeService, UserService userService)
         {
             Title = "Dodaj wyzwanie";
+
+            _challangeService = challangeService;
+            _userService = userService;
+        }
+
+        [RelayCommand]
+        async void Save()
+        {
+            if (IsBusy)
+                return;
+
+            try
+            {
+                IsBusy = true;
+                var user = await _userService.GetUserAsync();
+                var createChallangeDto = new CreateChallangeDto()
+                {
+                    Name = Name,
+                    Description = Description,
+                    Start = new DateTime(),
+                    UserId = user.Id,
+                    Type = (ChallangeType)Type
+                };
+
+                if (Validate()) await _challangeService.CreateChallangeAsync(createChallangeDto);
+
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Wystąpił błąd!", ex.Message, "Zatwierdź");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private bool Validate()
+        {
+            if (Name is null || Name.Length == 0)
+            {
+                ShowNameError = true;
+            }
+            else
+            {
+                ShowNameError = false;
+            }
+
+            if (Description is null || Description.Length == 0)
+            {
+                ShowDescriptionError = true;
+            }
+            else
+            {
+                ShowDescriptionError = false;
+            }
+            return !(ShowNameError || ShowDescriptionError);
         }
     }
 }

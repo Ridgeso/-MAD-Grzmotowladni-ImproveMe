@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ImproveMe.Enums
 {
-    public enum TaskType
+    public enum ChallangeType
     {
          Routine = 0,
 

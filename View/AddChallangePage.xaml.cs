@@ -6,7 +6,7 @@ public partial class AddChallangePage : ContentPage
 {
 	public AddChallangePage(AddChallangeViewModel viewModel)
 	{
-        BindingContext = new AddChallangeViewModel();
-        InitializeComponent();
+        BindingContext = viewModel;
+        InitializeComponent();  
 	}
 }

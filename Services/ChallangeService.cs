@@ -22,7 +22,22 @@ namespace ImproveMe.Services
                 return;
 
             Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            var result = await Database.CreateTableAsync<User>();
+            var result = await Database.CreateTableAsync<Challange>();
+        }
+
+        async public Task<Challange> CreateChallangeAsync(CreateChallangeDto dto)
+        {
+            await Init();
+            var challange = new Challange()
+            {
+                Name= dto.Name,
+                Description= dto.Description,
+                Start= dto.Start,
+                Type= dto.Type,
+            };
+            await Database.InsertAsync(challange);
+
+            return new Challange();
         }
 
     }
