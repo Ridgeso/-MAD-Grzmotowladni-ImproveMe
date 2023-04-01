@@ -27,7 +27,7 @@ namespace ImproveMe.Model
         
         [ForeignKey(nameof(Badge))]
         public long BadgeId { get; set; }
-
+        public Badge Badge { get; set; }
 
     }
 }

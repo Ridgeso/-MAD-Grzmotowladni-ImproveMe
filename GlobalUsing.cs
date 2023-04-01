@@ -2,7 +2,6 @@
 global using CommunityToolkit.Mvvm.Input;
 global using ImproveMe.Model;
 global using ImproveMe.ViewModel;
-global using ImproveMe.DTO.Challange;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
 global using System.Diagnostics;
