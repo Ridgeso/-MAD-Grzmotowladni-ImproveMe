@@ -21,14 +21,5 @@ namespace ImproveMe.Model
         public DateOnly LastLogged { get; set; }
 
         public uint Streak { get; set;}
-
-
-
-
-
-
-
-
-
     }
 }
