@@ -5,16 +5,20 @@ public partial class MainViewModel : BaseViewModel
 {
     public ObservableCollection<Challange> Challanges { get; } = new();
     ChallangeService m_ChallangeService;
+    UserService _userService;
 
     [ObservableProperty]
     bool isRefreshing;
 
-    public MainViewModel(ChallangeService challangeService)
+    public MainViewModel(ChallangeService challangeService, UserService userService)
     {
         Title = "ImproveMe";
         m_ChallangeService = challangeService;
 
         GetChallangesAsync();
+        _userService = userService;
+
+        givePointsForLoggin();
     }
 
     [RelayCommand]
@@ -73,5 +77,32 @@ public partial class MainViewModel : BaseViewModel
         );
     }
 
+    private async void givePointsForLoggin()
+    {
+        var user = await _userService.GetUserAsync();
+        var span = new TimeSpan(user.LastLogged.Ticks);
+        var todaySpan = new TimeSpan(DateTime.Now.Ticks);
+
+
+        switch((long)todaySpan.TotalDays - (long)span.TotalDays)
+        {
+            case 0:
+                break;
+            case 1:
+                user.Streak++;
+                var lvl = user.Level; 
+                user = await _userService.AddExpPoints(user, 100 * user.Streak);
+                if (lvl != user.Level) 
+                    await Shell.Current.DisplayAlert("Gratulacje!!!", $"Osiągnąłeś/aś {user.Level} poziom!!!", "Dobrze");
+                break;
+            default:
+                user.Streak = 0;
+                break;
+        }
+
+        user.LastLogged = DateTime.Now;
+        await _userService.UpdateUser(user);
+
+    }
 
 }

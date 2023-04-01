@@ -43,7 +43,7 @@ namespace ImproveMe.ViewModel
                 {
                     Name = Name,
                     Description = Description,
-                    Start = new DateTime(),
+                    Start = DateTime.Now,
                     UserId = user.Id,
                     Type = (ChallangeType)Type
                 };
