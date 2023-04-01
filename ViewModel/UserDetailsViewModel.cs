@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace ImproveMe.ViewModel;
 
-namespace ImproveMe.ViewModel
+[QueryProperty(nameof(User), "User")]
+public partial class UserDetailsViewModel : BaseViewModel
 {
-    public  class UserDetailsViewModel
-    {
-    }
+    UserService m_UserService;
     
+    [ObservableProperty]
+    User user;
+
+
+    public UserDetailsViewModel(UserService service)
+    {
+        m_UserService = service;        
+    }
 }
+
