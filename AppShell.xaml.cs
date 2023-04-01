@@ -1,4 +1,6 @@
-﻿namespace ImproveMe;
+﻿using ImproveMe.View;
+
+namespace ImproveMe;
 
 public partial class AppShell : Shell
 {

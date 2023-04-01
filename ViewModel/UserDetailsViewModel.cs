@@ -9,4 +9,5 @@ namespace ImproveMe.ViewModel
     public  class UserDetailsViewModel
     {
     }
+    
 }

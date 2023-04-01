@@ -1,4 +1,5 @@
-﻿namespace ImproveMe.View;
+﻿using ImproveMe.ViewModel;
+namespace ImproveMe.View;
 
 public partial class MainPage : ContentPage
 {

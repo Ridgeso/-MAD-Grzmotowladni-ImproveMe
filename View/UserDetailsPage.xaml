@@ -2,11 +2,157 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ImproveMe.View.UserDetailsPage"
-             Title="UserDetailsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="User">
+    <ScrollView BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+        <Grid RowDefinitions="Auto,*,*" ColumnDefinitions="*,*">
+            <BoxView
+                BackgroundColor="{StaticResource Primary}"
+                Grid.Row="0"
+                Grid.RowSpan="1"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"/>
+
+            <Border StrokeShape="RoundRectangle 80"
+                    Stroke="black"
+                    Grid.Column="1"
+                    StrokeThickness="4"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    Margin="0,8,20,0"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start">
+                <Image Aspect="AspectFill"
+                        HeightRequest="160"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Source="{Binding Monkey.Image}"
+                        WidthRequest="160"/>
+            </Border>
+
+            <Label Style="{StaticResource LargeLabel}" 
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   Text="Dawid" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="StartAndExpand"
+                   Margin="10,10,0,8"/>
+
+
+            <Grid Grid.Row="1"  Grid.ColumnSpan="2" RowDefinitions="*,*,*" ColumnDefinitions="*,*" Padding="10" >
+
+                <Label Grid.Row="0" 
+                       Grid.Column="0"
+                        Text="Statystyki" 
+                        HorizontalOptions="StartAndExpand" 
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="200" 
+                        Margin="0,10,0,8"
+                        FontSize="25" />
+                
+                <Border StrokeShape="RoundRectangle 90"
+                        Grid.Row="1"     
+                        Grid.Column="0"
+                        Margin="8"
+                        Stroke="{StaticResource Primary}"
+                        StrokeThickness="2">
+                    <Grid 
+                          VerticalOptions="Center"
+                          RowDefinitions="Auto,Auto" 
+                          ColumnDefinitions="Auto,Auto"
+                          Margin="20,10,10,10"
+                          ColumnSpacing="15">
+                        <Label Grid.Row="0"     
+                               Grid.Column="0" Text="+++"/>
+                        <Label Grid.Row="0" 
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Grid.Column="1" Text="0"/>
+                        <Label Grid.Row="1"     
+                               Grid.Column="1" 
+                               HorizontalOptions="Start"
+                               Text="Dni z rzędu"/>
+                    </Grid>
+                </Border>
+                <Border StrokeShape="RoundRectangle 90"
+                        Grid.Row="1"     
+                        Grid.Column="1"
+                        Margin="8"
+                        Stroke="{StaticResource Primary}"
+                        StrokeThickness="2">
+                    <Grid 
+                          VerticalOptions="Center"
+                          RowDefinitions="Auto,Auto" 
+                          ColumnDefinitions="Auto,Auto"
+                          Margin="20,10,10,10"
+                          ColumnSpacing="15">
+                        <Label Grid.Row="0"   
+                               Grid.Column="0" Text="+++"/>
+                        <Label Grid.Row="0" 
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Grid.Column="1" Text="0"/>
+                        <Label Grid.Row="1"     
+                               Grid.Column="1" 
+                               HorizontalOptions="Start"
+                               Text="Suma punktów"/>
+                    </Grid>
+                </Border>
+                <Border StrokeShape="RoundRectangle 90"
+                        Grid.Row="2"     
+                        Grid.Column="1"
+                        Margin="8"
+                        Stroke="{StaticResource Primary}"
+                        StrokeThickness="2">
+                    <Grid 
+                          VerticalOptions="Center"
+                          RowDefinitions="Auto,Auto" 
+                          ColumnDefinitions="Auto,Auto"
+                          Margin="20,10,10,10"
+                          ColumnSpacing="15">
+                        <Label Grid.Row="0"   
+                               Grid.Column="0" Text="+++"/>
+                        <Label Grid.Row="0" 
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Grid.Column="1" Text="0"/>
+                        <Label Grid.Row="1"     
+                               Grid.Column="1" 
+                               HorizontalOptions="Start"
+                               Text="medale"/>
+                    </Grid>
+                </Border>
+                <Border StrokeShape="RoundRectangle 90"
+                        Grid.Row="2"     
+                        Grid.Column="0"
+                        Margin="8"
+                        Stroke="{StaticResource Primary}"
+                        StrokeThickness="2">
+                    <Grid 
+                          VerticalOptions="Center"
+                          RowDefinitions="Auto,Auto" 
+                          ColumnDefinitions="Auto,Auto"
+                          Margin="20,10,10,10"
+                          ColumnSpacing="15">
+                        <Label Grid.Row="0"    
+                               Grid.Column="0" Text="+++"/>
+                        <Label Grid.Row="0" 
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="Center"
+                               Grid.Column="1" Text="0"/>
+                        <Label Grid.Row="1"     
+                               Grid.Column="1" 
+                               HorizontalOptions="StartAndExpand"
+                               Text="Obecna liga"/>
+                    </Grid>
+                </Border>
+
+
+
+            </Grid>
+
+        </Grid>
+    </ScrollView>
 </ContentPage>

@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace ImproveMe.ViewModel;
+namespace ImproveMe;
 
 public partial class BaseViewModel : ObservableObject
 {
