@@ -84,8 +84,8 @@ public partial class MainViewModel : BaseViewModel
                 user.Streak++;
                 var lvl = user.Level; 
                 user = await _userService.AddExpPoints(user, 100 * user.Streak);
-                if (lvl != user.Level) await Shell.Current.DisplayAlert("Gratulacje!!!", $"Osiągnąłeś/aś {user.Level} poziom!!!", "Dobrze");
-                    
+                if (lvl != user.Level) 
+                    await Shell.Current.DisplayAlert("Gratulacje!!!", $"Osiągnąłeś/aś {user.Level} poziom!!!", "Dobrze");
                 break;
             default:
                 user.Streak = 0;
