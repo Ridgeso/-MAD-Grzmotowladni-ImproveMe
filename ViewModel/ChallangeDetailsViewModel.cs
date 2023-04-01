@@ -6,8 +6,15 @@ namespace ImproveMe.ViewModel;
 public partial  class ChallangeDetailsViewModel : BaseViewModel
 
 {
-
+    UserService m_UserService;
+    
+    public ChallangeDetailsViewModel(UserService userService) 
+    {
+        m_UserService = userService;
+    }
     [ObservableProperty]
     Challange challange;
+
+
 
 }

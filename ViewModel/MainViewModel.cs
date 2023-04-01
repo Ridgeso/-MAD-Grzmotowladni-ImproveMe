@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Input;
+
 namespace ImproveMe.ViewModel;
 
 public partial class MainViewModel : BaseViewModel
@@ -6,13 +8,16 @@ public partial class MainViewModel : BaseViewModel
     public ObservableCollection<Challange> Challanges { get; } = new();
     ChallangeService m_ChallangeService;
 
+    UserService m_UserService;
+
     [ObservableProperty]
     bool isRefreshing;
 
-    public MainViewModel(ChallangeService challangeService)
+    public MainViewModel(ChallangeService challangeService, UserService userService)
     {
         Title = "ImproveMe";
         m_ChallangeService = challangeService;
+        m_UserService = userService;
     }
 
     [RelayCommand]
@@ -43,6 +48,8 @@ public partial class MainViewModel : BaseViewModel
         }
     }
 
+
+
     [RelayCommand]
     async Task GoToTaskDetails(Challange challange)
     {
@@ -56,10 +63,10 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task GoToUserDetails(User user)
+    async Task GoToUserDetails()
     {
-        if (user == null)
-            return;
+
+        User user = await m_UserService.GetUserAsync();
 
         await Shell.Current.GoToAsync(nameof(UserDetailsPage), true, new Dictionary<string, object>
         {
