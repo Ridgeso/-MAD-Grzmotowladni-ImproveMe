@@ -1,7 +1,5 @@
 ﻿
 
-using CoreML;
-
 namespace ImproveMe.ViewModel;
 
 [QueryProperty(nameof(Challange), "Challange")]
