@@ -2,12 +2,12 @@
 namespace ImproveMe.ViewModel;
 
 [QueryProperty(nameof(User), "User")]
-public partial class UserDetailsViewModel
+public partial class UserDetailsViewModel : BaseViewModel
 {
     UserService m_UserService;
     
     [ObservableProperty]
-    User m_CurrentUser;
+    User user;
 
 
     public UserDetailsViewModel(UserService service)

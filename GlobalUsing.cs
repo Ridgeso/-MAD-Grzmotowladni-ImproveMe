@@ -7,6 +7,7 @@ global using ImproveMe.Model;
 global using ImproveMe.ViewModel;
 global using ImproveMe.Enums;
 global using ImproveMe.DTO.Challange;
+global using System;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
 global using System.Diagnostics;
