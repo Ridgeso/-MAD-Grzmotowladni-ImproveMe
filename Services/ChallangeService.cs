@@ -1,19 +1,20 @@
-﻿using SQLite;
+﻿using ImproveMe.DTO.Badge;
+using ImproveMe.DTO.Challange;
+using ImproveMe.Enums;
+using SQLite;
 
-namespace ImproveMe.Services;
-
-public class ChallangeService
+namespace ImproveMe.Services
 {
-    SQLiteAsyncConnection Database;
-
-    private readonly UserService _userService;
-
-    List<Challange> m_Challanges;
-
-    public ChallangeService(UserService userService)
+    public class ChallangeService
     {
-        _userService = userService;
-    }
+        SQLiteAsyncConnection Database;
+        private readonly UserService _userService;
+        private readonly BadgeService _badgeService;
+        public ChallangeService(UserService userService, BadgeService badgeService)
+        {
+            _userService = userService;
+            _badgeService = badgeService;
+        }
 
     async Task Init()
     {
@@ -42,8 +43,19 @@ public class ChallangeService
         };
         await Database.InsertAsync(challange);
 
-        return new Challange();
-    }
+            var createBadgeDto = new CreateBadgeDto()
+            {
+                Name = dto.Name,
+                ChallangeId = challange.Id,
+                Rank = Rank.None,
+            };
+
+            var badge = await _badgeService.CreateBadgeAsync(createBadgeDto);
+            challange.BadgeId = badge.Id;
+            await Database.UpdateAsync(challange);
+
+            return challange;
+        }
 
     public async Task<Challange> CreateChallangeAsync()
     {

@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using ImproveMe.DTO.Badge;
+using SQLite;
 
 namespace ImproveMe.Services;
 
@@ -12,6 +13,24 @@ public class BadgeService
 
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         var result = await Database.CreateTableAsync<Badge>();
+    }
+
+}
+        async public Task<Badge> CreateBadgeAsync(CreateBadgeDto dto)
+        {
+            await Init();
+
+            var badge = new Badge()
+            {
+                Name = dto.Name,
+                ChallangeId = dto.ChallangeId,
+                Rank = dto.Rank,
+            };
+
+            await Database.InsertAsync(badge);
+
+            return badge;
+        }
     }
 
 }
