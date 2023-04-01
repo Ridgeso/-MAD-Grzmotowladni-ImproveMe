@@ -21,22 +21,6 @@
             IsRefreshing="{Binding IsRefreshing}">
             <ContentView>
 
-                <!--<Grid Padding="10" HorizontalOptions="Fill">
-                    <Frame HeightRequest="125" Style="{StaticResource CardView}">
-
-                        <Grid Padding="0" ColumnDefinitions="125,*">
-                            <VerticalStackLayout
-                                                VerticalOptions="Center"
-                                                Grid.Column="1"
-                                                Padding="10">
-                                <Label Style="{StaticResource LargeLabel}" Text="Zrob cos" />
-                                <Label Style="{StaticResource MediumLabel}" Text="Prosze" />
-                            </VerticalStackLayout>
-                        </Grid>
-
-                    </Frame>
-                </Grid>-->
-                
                 <CollectionView
                     ItemsSource="{Binding Challanges}"
                     SelectionMode="None">

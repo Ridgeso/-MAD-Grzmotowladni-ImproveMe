@@ -1,6 +1,7 @@
 ﻿global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 global using ImproveMe.View;
+global using ImproveMe.Services;
 global using ImproveMe.Model;
 global using ImproveMe.ViewModel;
 global using ImproveMe.Enums;

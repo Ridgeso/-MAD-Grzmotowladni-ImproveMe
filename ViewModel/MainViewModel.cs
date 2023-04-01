@@ -1,5 +1,4 @@
-﻿using ImproveMe.Services;
-
+﻿
 namespace ImproveMe.ViewModel;
 
 public partial class MainViewModel : BaseViewModel

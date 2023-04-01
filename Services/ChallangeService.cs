@@ -20,24 +20,30 @@ public class ChallangeService
         if (Database is not null)
             return;
 
-            Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            var result = await Database.CreateTableAsync<Challange>();
-        }
+        Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+        var result = await Database.CreateTableAsync<Challange>();
 
-        async public Task<Challange> CreateChallangeAsync(CreateChallangeDto dto)
+        var user = await GetChallangeAsync();
+        if (user is null)
         {
-            await Init();
-            var challange = new Challange()
-            {
-                Name= dto.Name,
-                Description= dto.Description,
-                Start= dto.Start,
-                Type= dto.Type,
-            };
-            await Database.InsertAsync(challange);
-
-            return new Challange();
+            await CreateChallangeAsync();
         }
+    }
+
+    async public Task<Challange> CreateChallangeAsync(CreateChallangeDto dto)
+    {
+        await Init();
+        var challange = new Challange()
+        {
+            Name= dto.Name,
+            Description= dto.Description,
+            Start= dto.Start,
+            Type= dto.Type,
+        };
+        await Database.InsertAsync(challange);
+
+        return new Challange();
+    }
 
     public async Task<Challange> CreateChallangeAsync()
     {
@@ -45,13 +51,24 @@ public class ChallangeService
         var user = new Challange() {
             Name = "Zadanie",
             Description = "Moja codzienna rutyna",
-            Type = TaskType.Routine,
-            Start = DateOnly.MaxValue,
-            Checked = DateOnly.MinValue
+            Type = ChallangeType.Routine,
+            Start = DateTime.MaxValue,
+            Checked = DateTime.MinValue
         };
 
         await Database.InsertAsync(user);
         return await GetChallangeAsync();
     }
 
+    public async Task<Challange> GetChallangeAsync()
+    {
+        await Init();
+        return await Database.Table<Challange>().FirstOrDefaultAsync();
+    }
+
+    public async Task<List<Challange>> GetChellenges()
+    {
+        await Init();
+        return await Database.Table<Challange>().ToListAsync();
+    }
 }
