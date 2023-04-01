@@ -49,7 +49,7 @@ public partial class MainViewModel : BaseViewModel
         if (challange == null)
             return;
 
-        await Shell.Current.GoToAsync(nameof(TaskDetailsPage), true, new Dictionary<string, object>
+        await Shell.Current.GoToAsync(nameof(ChallangeDetailsPage), true, new Dictionary<string, object>
         {
             { "Challange", challange }
         });
