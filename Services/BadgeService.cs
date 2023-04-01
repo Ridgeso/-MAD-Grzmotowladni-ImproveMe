@@ -1,10 +1,5 @@
-﻿using CloudKit;
+﻿using ImproveMe.DTO.Badge;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImproveMe.Services
 {
@@ -20,6 +15,21 @@ namespace ImproveMe.Services
             var result = await Database.CreateTableAsync<Badge>();
         }
 
+        async public Task<Badge> CreateBadgeAsync(CreateBadgeDto dto)
+        {
+            await Init();
+
+            var badge = new Badge()
+            {
+                Name = dto.Name,
+                ChallangeId = dto.ChallangeId,
+                Rank = dto.Rank,
+            };
+
+            await Database.InsertAsync(badge);
+
+            return badge;
+        }
     }
 
 }

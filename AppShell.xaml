@@ -9,6 +9,6 @@
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="AddChallangePage" />
+        Route="MainPage" />
 
 </Shell>

@@ -48,8 +48,11 @@ namespace ImproveMe.ViewModel
                     Type = (ChallangeType)Type
                 };
 
-                if (Validate()) await _challangeService.CreateChallangeAsync(createChallangeDto);
-
+                if (Validate()) {
+                    var res = await _challangeService.CreateChallangeAsync(createChallangeDto);
+                    await Shell.Current.DisplayAlert("Sukces!", "Poprawnie dodano wyzwanie." , "Zatwierdź");
+                    await Shell.Current.GoToAsync(nameof(MainPage), true);
+                }
             }
             catch (Exception ex)
             {
