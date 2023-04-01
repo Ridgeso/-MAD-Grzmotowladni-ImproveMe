@@ -1,7 +1,5 @@
 ﻿using ImproveMe.DTO.Badge;
 using ImproveMe.DTO.Challange;
-using ImproveMe.Enums;
-using SQLite;
 
 namespace ImproveMe.Services;
 
@@ -23,12 +21,6 @@ public class ChallangeService
 
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         var result = await Database.CreateTableAsync<Challange>();
-
-        var user = await GetChallangeAsync();
-        if (user is null)
-        {
-            await CreateChallangeAsync();
-        }
     }
 
     async public Task<Challange> CreateChallangeAsync(CreateChallangeDto dto)
@@ -55,22 +47,6 @@ public class ChallangeService
         await Database.UpdateAsync(challange);
 
         return challange;
-    }
-
-    public async Task<Challange> CreateChallangeAsync()
-    {
-        await Init();
-        var user = new Challange()
-        {
-            Name = "Zadanie",
-            Description = "Moja codzienna rutyna",
-            Type = ChallangeType.Routine,
-            Start = DateTime.MaxValue,
-            Checked = DateTime.MinValue
-        };
-
-        await Database.InsertAsync(user);
-        return await GetChallangeAsync();
     }
 
     public async Task<Challange> GetChallangeAsync()
