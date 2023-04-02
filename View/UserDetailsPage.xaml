@@ -5,7 +5,8 @@
              xmlns:viewmodel="clr-namespace:ImproveMe.ViewModel"
              xmlns:model="clr-namespace:ImproveMe.Model"
              Title="User">
-    <ScrollView BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+    <ScrollView
+        BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
         <Grid RowDefinitions="Auto,*,*" ColumnDefinitions="*,*">
             <BoxView
                 BackgroundColor="yellow"
@@ -24,12 +25,6 @@
                     Margin="0,8,20,0"
                     HorizontalOptions="End"
                     VerticalOptions="Start">
-                <Image Aspect="AspectFill"
-                        HeightRequest="160"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Source="{Binding Monkey.Image}"
-                        WidthRequest="160"/>
             </Border>
 
             <Label Style="{StaticResource LargeLabel}" 
@@ -71,7 +66,7 @@
                         <Label Grid.Row="0" 
                                HorizontalOptions="Start"
                                VerticalOptions="Center"
-                               Grid.Column="1" Text="0"/>
+                               Grid.Column="1" Text="{Binding User.Streak}"/>
                         <Label Grid.Row="1"     
                                Grid.Column="1" 
                                HorizontalOptions="Start"
@@ -95,7 +90,7 @@
                         <Label Grid.Row="0" 
                                HorizontalOptions="Start"
                                VerticalOptions="Center"
-                               Grid.Column="1" Text="0"/>
+                               Grid.Column="1" Text="{Binding User.Points}"/>
                         <Label Grid.Row="1"     
                                Grid.Column="1" 
                                HorizontalOptions="Start"
@@ -119,7 +114,7 @@
                         <Label Grid.Row="0" 
                                HorizontalOptions="Start"
                                VerticalOptions="Center"
-                               Grid.Column="1" Text="0"/>
+                               Grid.Column="1" Text="{Binding User.Coins}"/>
                         <Label Grid.Row="1"     
                                Grid.Column="1" 
                                HorizontalOptions="Start"
@@ -150,8 +145,6 @@
                                Text="Rank"/>
                     </Grid>
                 </Border>
-
-
 
             </Grid>
 
