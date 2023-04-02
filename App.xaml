@@ -18,6 +18,8 @@
 
             <Color x:Key="LabelText">#1F1F1F</Color>
             <Color x:Key="LabelTextDark">White</Color>
+            
+            <Image x:Key="UserIcon" Source="/Resources/Images/user.png"></Image>
 
             <Style ApplyToDerivedTypes="True" TargetType="Page">
             </Style>
@@ -52,8 +54,9 @@
             </Style>
 
             <Style x:Key="ButtonOutline" TargetType="Button">
-                <Setter Property="TextColor" Value="{StaticResource Primary}" />
-                <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+                <Setter Property="TextColor" Value="{StaticResource Secondary}" />
+                <Setter Property="BorderColor" Value="{StaticResource Secondary}" />
                 <Setter Property="BorderWidth" Value="2" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="CornerRadius" Value="20" />

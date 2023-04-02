@@ -27,6 +27,7 @@ public class UserService
     {
         await Init();
         return await Database.Table<User>().FirstOrDefaultAsync();
+
     }
 
     public async Task<User> CreateUserAsync()
@@ -71,5 +72,9 @@ public class UserService
         return (ushort)((5+Math.Sqrt(25+2*exp))/10);
     }
 
+    public uint CalcExpByStreak(long streak)
+    {
+        return (uint)streak * 200u;
+    }
 
 }
