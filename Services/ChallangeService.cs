@@ -98,11 +98,8 @@ public class ChallangeService
             }
             else
             {
-                if (challange.Period > 0)
-                    challange.Streak = (long)Math.Ceiling((Decimal)(DateTime.Now.Day - challange.LastChecked.Day) / challange.Period);
-                else
-                    challange.Streak = 0;
-
+                challange.Streak = (long)Math.Ceiling((Decimal)(DateTime.Now.Day - challange.LastChecked.Day) / challange.Period);
+                
                 await _userService.AddExpPoints(user, _userService.CalcExpByStreak(challange.Streak));
             }
         }

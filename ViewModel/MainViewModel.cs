@@ -19,14 +19,17 @@ public partial class MainViewModel : BaseViewModel
         Title = "ImproveMe";
         m_ChallangeService = challangeService;
 
-        GetChallangesAsync(true);
+        GetChallangesAsync();
         _userService = userService;
+
+        foreach (var ch in Challanges)
+            m_ChallangeService.UpdateChallange(ch, false);
 
         givePointsForLoggin();
     }
 
     [RelayCommand]
-    async Task GetChallangesAsync(bool updateCh = false)
+    async Task GetChallangesAsync()
     {
         if (IsBusy)
             return;
@@ -40,11 +43,7 @@ public partial class MainViewModel : BaseViewModel
                 Challanges.Clear();
 
             foreach (var ch in challenges)
-            {
-                if (updateCh)
-                    await m_ChallangeService.UpdateChallange(ch, false);
                 Challanges.Add(ch);
-            }
         }
         catch (Exception ex)
         {
@@ -57,8 +56,6 @@ public partial class MainViewModel : BaseViewModel
             IsRefreshing = false;
         }
     }
-
-
 
     [RelayCommand]
     async Task GoToTaskDetails(Challange challange)
@@ -75,7 +72,13 @@ public partial class MainViewModel : BaseViewModel
     [RelayCommand]
     async Task GoToUserDetails()
     {
-        await Shell.Current.GoToAsync(nameof(UserDetailsPage), true);
+        User user = await _userService.GetUserAsync();
+        if (user == null)
+            return;
+        await Shell.Current.GoToAsync(nameof(UserDetailsPage), true, new Dictionary<string, object>
+        {
+            { "User", user }
+        });
     }
 
     [RelayCommand]
@@ -83,8 +86,7 @@ public partial class MainViewModel : BaseViewModel
     {
         await Shell.Current.GoToAsync(
             nameof(AddChallangePage),
-            true,
-            new Dictionary<string, object> { }
+            true
         );
     }  
     

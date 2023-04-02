@@ -27,8 +27,7 @@
         <RefreshView
             Grid.ColumnSpan="3"
             Command="{Binding GetChallangesCommand}"
-            IsRefreshing="{Binding IsRefreshing}"
-            IsEnabled="False">
+            IsRefreshing="{Binding IsRefreshing}">
             <ContentView>
 
                 <CollectionView

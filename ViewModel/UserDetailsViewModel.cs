@@ -1,6 +1,7 @@
 ﻿
 namespace ImproveMe.ViewModel;
 
+[QueryProperty(nameof(User), "User")]
 public partial class UserDetailsViewModel : BaseViewModel
 {
     UserService m_UserService;
@@ -11,8 +12,6 @@ public partial class UserDetailsViewModel : BaseViewModel
     public UserDetailsViewModel(UserService service)
     {
         m_UserService = service;
-        user = m_UserService.GetUserAsync().Result;
     }
-
 }
 

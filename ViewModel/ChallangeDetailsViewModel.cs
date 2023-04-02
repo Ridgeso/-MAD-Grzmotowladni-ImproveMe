@@ -5,10 +5,12 @@ namespace ImproveMe.ViewModel;
 public partial  class ChallangeDetailsViewModel : BaseViewModel
 {
     ChallangeService challangeService;
+    UserService userService;
 
-    public ChallangeDetailsViewModel(ChallangeService service)
+    public ChallangeDetailsViewModel(ChallangeService serviceCh, UserService serviceUs)
     {
-        challangeService = service;
+        challangeService = serviceCh;
+        userService = serviceUs;
     }
 
     [ObservableProperty]
@@ -40,7 +42,13 @@ public partial  class ChallangeDetailsViewModel : BaseViewModel
     [RelayCommand]
     async Task GoToUserDetails()
     {
-        await Shell.Current.GoToAsync(nameof(UserDetailsPage), true);
+        User user = await userService.GetUserAsync();
+        if (user == null)
+            return;
+        await Shell.Current.GoToAsync(nameof(UserDetailsPage), true, new Dictionary<string, object>
+        {
+            { "User", user }
+        });
     }
 
 }
