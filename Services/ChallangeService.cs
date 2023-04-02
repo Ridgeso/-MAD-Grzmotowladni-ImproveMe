@@ -30,7 +30,9 @@ public class ChallangeService
         {
             Name = dto.Name,
             Description = dto.Description,
-            Start = dto.Start,
+            Streak = 0,
+            LastChecked = dto.Start,
+            Period = 1L,
             Type = dto.Type,
         };
         await Database.InsertAsync(challange);
@@ -65,5 +67,40 @@ public class ChallangeService
     {
         await Init();
         return await Database.Table<Challange>().ToListAsync();
+    }
+
+    public async Task UpdateChallange(Challange challange, bool Action)
+    {
+        await Init();
+        var difference = DateTime.Now.Day - challange.LastChecked.Day;
+        
+        if (challange.Type == ChallangeType.Routine && Action)
+        {
+            if (difference < challange.Period)
+                return;
+
+            if (difference == challange.Period)
+                challange.Streak++;
+            else
+                challange.Streak = 0;
+            challange.LastChecked = DateTime.Now;
+        }
+        else if (challange.Type != ChallangeType.Abstinence && !Action)
+        {
+            if (difference < challange.Period)
+            {
+                challange.LastChecked = DateTime.Now;
+                challange.Streak = 0;
+            }
+            else
+            {
+                if (challange.Period > 0)
+                    challange.Streak = (long)Math.Ceiling((Decimal)(DateTime.Now.Day - challange.LastChecked.Day) / challange.Period);
+                else
+                    challange.Streak = 0;
+            }
+        }
+
+        await Database.UpdateAsync(challange);
     }
 }

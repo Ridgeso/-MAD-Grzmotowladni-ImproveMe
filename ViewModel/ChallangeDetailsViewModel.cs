@@ -32,6 +32,12 @@ public partial  class ChallangeDetailsViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    async Task ActionAsync()
+    {
+        await challangeService.UpdateChallange(challange, true);
+    }
+
+    [RelayCommand]
     async Task GoToUserDetails()
     {
         await Shell.Current.GoToAsync(nameof(UserDetailsPage), true);

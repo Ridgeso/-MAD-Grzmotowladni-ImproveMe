@@ -19,14 +19,14 @@ public partial class MainViewModel : BaseViewModel
         Title = "ImproveMe";
         m_ChallangeService = challangeService;
 
-        GetChallangesAsync();
+        GetChallangesAsync(true);
         _userService = userService;
 
         givePointsForLoggin();
     }
 
     [RelayCommand]
-    async Task GetChallangesAsync()
+    async Task GetChallangesAsync(bool updateCh = false)
     {
         if (IsBusy)
             return;
@@ -38,8 +38,13 @@ public partial class MainViewModel : BaseViewModel
 
             if (Challanges.Count != 0)
                 Challanges.Clear();
+
             foreach (var ch in challenges)
+            {
+                if (updateCh)
+                    await m_ChallangeService.UpdateChallange(ch, false);
                 Challanges.Add(ch);
+            }
         }
         catch (Exception ex)
         {
