@@ -6,6 +6,9 @@
              xmlns:model="clr-namespace:ImproveMe.Model"
              Title="{Binding Title}"
              >
+    <ContentPage.ToolbarItems FlexLayout.Grow="1"  >
+        <ToolbarItem  IconImageSource="/Resources/Images/user.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=GoToUserDetailsCommand}"/>
+    </ContentPage.ToolbarItems>
     <Grid
                     RowDefinitions="*,Auto"
                     RowSpacing="5"
@@ -59,10 +62,10 @@
                                             <Label FontSize="24" Text="{Binding Name}"></Label>
                                             <Label FontAttributes="Bold" Text="{Binding CompanyName}"></Label>
                                             <Label Text="{Binding Description}"></Label>
-                                            
+
                                             <Label Text="Twój kod rabatowy" HorizontalTextAlignment="Center" />
                                             <Label FontSize="16" FontAttributes="Bold" Text="{Binding Code}" HorizontalTextAlignment="Center" />
-                                            
+
                                             <Label Text="Data ważności " FontSize="10" HorizontalTextAlignment="Center" />
                                             <Label FontSize="10" FontAttributes="Bold" Text="{Binding ExpirationDate}" HorizontalTextAlignment="Center" />
                                         </VerticalStackLayout>
