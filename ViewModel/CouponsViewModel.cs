@@ -14,6 +14,7 @@ namespace ImproveMe.ViewModel
         [NotifyPropertyChangedFor(nameof(ShowNotCollected))]
         public bool showCollected = false;
 
+        
         public bool ShowNotCollected => !ShowCollected;
 
         [ObservableProperty]
