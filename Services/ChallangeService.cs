@@ -73,14 +73,18 @@ public class ChallangeService
     {
         await Init();
         var difference = DateTime.Now.Day - challange.LastChecked.Day;
-        
+        User user = await _userService.GetUserAsync();
+
         if (challange.Type == ChallangeType.Routine && Action)
         {
             if (difference < challange.Period)
                 return;
 
             if (difference == challange.Period)
+            {
                 challange.Streak++;
+                await _userService.AddExpPoints(user, _userService.CalcExpByStreak(challange.Streak));
+            }
             else
                 challange.Streak = 0;
             challange.LastChecked = DateTime.Now;
@@ -98,6 +102,8 @@ public class ChallangeService
                     challange.Streak = (long)Math.Ceiling((Decimal)(DateTime.Now.Day - challange.LastChecked.Day) / challange.Period);
                 else
                     challange.Streak = 0;
+
+                await _userService.AddExpPoints(user, _userService.CalcExpByStreak(challange.Streak));
             }
         }
 
