@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImproveMe.View.CouponsPage"
+             xmlns:viewmodel="clr-namespace:ImproveMe.ViewModel"
+             xmlns:model="clr-namespace:ImproveMe.Model"
+             Title="{Binding Title}"
+             >
+        <ScrollView>
+        <RefreshView
+            Command="{Binding GetCouponsCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <ContentView>
+                <CollectionView
+                    ItemsSource="{Binding Coupons}"
+                        SelectionMode="None"
+                    
+                    >
+                    <CollectionView.EmptyView>
+                        <Label FontSize="20">Nie znaleziono kuponów</Label>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate  x:DataType="model:Coupon">
+                            <Frame Margin="10">
+                                <VerticalStackLayout Spacing="6">
+                                        <Label FontSize="24" Text="{Binding Name}"></Label>
+                                        <Label Text="{Binding CompanyName, StringFormat=Firma: {0}}"></Label>
+                                        <Label Text="{Binding Description}"></Label>
+                                        <Button Text="{Binding Price, StringFormat=Odbierz: {0}}"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ContentView>
+        </RefreshView>
+    </ScrollView>
+</ContentPage>

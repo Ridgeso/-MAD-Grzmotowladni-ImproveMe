@@ -33,10 +33,14 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<AddChallangePage>();
         builder.Services.AddSingleton<AddChallangeViewModel>();
+		
+		builder.Services.AddSingleton<CouponsPage>();
+        builder.Services.AddSingleton<CouponsViewModel>();
 
         builder.Services.AddSingleton<ChallangeService>();
 		builder.Services.AddSingleton<UserService>();
 		builder.Services.AddSingleton<BadgeService>();
+		builder.Services.AddSingleton<CouponService>();
 
         return builder.Build();
 	}

@@ -21,7 +21,9 @@ namespace ImproveMe.Model
         public ushort Level { get; set; }
 
         public DateTime LastLogged { get; set; }
-            
+         
         public uint Streak { get; set;} 
+
+        public uint Coins { get; set;}
     }
 }
