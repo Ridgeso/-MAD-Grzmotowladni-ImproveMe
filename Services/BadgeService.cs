@@ -6,6 +6,13 @@ namespace ImproveMe.Services;
 public class BadgeService
 {
     SQLiteAsyncConnection Database;
+    private readonly UserService _userService;
+
+    public BadgeService(UserService userService)
+    {
+        _userService = userService;
+    }
+
     async Task Init()
     {
         if (Database is not null)
@@ -53,7 +60,7 @@ public class BadgeService
         {
             badge.Rank = Rank.Gold;
         }
-        else if (challange.Streak > 182)
+        else if (challange.Streak > 182 && challange.Streak < 365)
         {
             badge.Rank = Rank.Platinum;
         }
@@ -63,6 +70,12 @@ public class BadgeService
         }
 
         await Database.UpdateAsync(badge);
+
+        var user = await _userService.GetUserAsync();
+
+        await _userService.AddExpPoints(user, (uint)Math.Pow(10, (int)badge.Rank+1));
+        user.Coins += ((uint)badge.Rank + 1)*500;
+        await _userService.UpdateUser(user);
 
         return badge;
     }
