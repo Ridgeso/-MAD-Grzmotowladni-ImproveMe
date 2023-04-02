@@ -27,6 +27,7 @@ public class UserService
     {
         await Init();
         return await Database.Table<User>().FirstOrDefaultAsync();
+
     }
 
     public async Task<User> CreateUserAsync()

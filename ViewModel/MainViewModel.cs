@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Input;
+
 namespace ImproveMe.ViewModel;
 
 public partial class MainViewModel : BaseViewModel
@@ -6,6 +8,8 @@ public partial class MainViewModel : BaseViewModel
     public ObservableCollection<Challange> Challanges { get; } = new();
     ChallangeService m_ChallangeService;
     UserService _userService;
+
+    UserService m_UserService;
 
     [ObservableProperty]
     bool isRefreshing;
@@ -48,6 +52,8 @@ public partial class MainViewModel : BaseViewModel
             IsRefreshing = false;
         }
     }
+
+
 
     [RelayCommand]
     async Task GoToTaskDetails(Challange challange)
