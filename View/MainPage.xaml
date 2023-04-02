@@ -7,7 +7,6 @@
     xmlns:model="clr-namespace:ImproveMe.Model"
     Title="{Binding Title}">
     <ContentPage.ToolbarItems>
-
         <ToolbarItem IconImageSource="/Resources/Images/user.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=GoToUserDetailsCommand}"/>
     </ContentPage.ToolbarItems>
     <Grid
