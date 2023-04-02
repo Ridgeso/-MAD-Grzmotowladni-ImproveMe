@@ -104,6 +104,8 @@ public class ChallangeService
             }
         }
 
+        await _badgeService.UpdateRank(challange);
+
         await Database.UpdateAsync(challange);
     }
 }

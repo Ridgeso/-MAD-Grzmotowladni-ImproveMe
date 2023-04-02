@@ -8,18 +8,18 @@ namespace ImproveMe.Enums
 {
     public enum Rank
     {
-         None = 0,
+        None = 0,
 
-         Bronze,
+        Bronze,
 
-         Silver,
+        Silver,
 
-         Gold,
+        Gold,
 
-         Platinum,
+        Platinum,
 
-
+        Diamond
     }
 
-    
+
 }
