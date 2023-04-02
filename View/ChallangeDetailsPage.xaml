@@ -55,7 +55,7 @@
                         
                         Margin="8"
                         Style="{StaticResource ButtonOutline}"/>
-                <Label Text = "Welcome to XAML Tutorial" Margin = "5"/>
+                <Label Text = "{Binding Challange.Description}" Margin = "5"/>
             </VerticalStackLayout>
         </Grid>
 
