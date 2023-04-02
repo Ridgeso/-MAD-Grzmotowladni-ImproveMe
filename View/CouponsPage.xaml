@@ -10,73 +10,74 @@
         <ToolbarItem  IconImageSource="/Resources/Images/user.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=GoToUserDetailsCommand}"/>
     </ContentPage.ToolbarItems>
     <Grid
-                    RowDefinitions="*,Auto"
-                    RowSpacing="5"
-                    
-                    >
-        <ScrollView>
-            <RefreshView
+        RowDefinitions="*,Auto"
+        RowSpacing="5">
+        <RefreshView
             Command="{Binding GetCouponsCommand}"
             IsRefreshing="{Binding IsRefreshing}"
-            IsEnabled="True"
-            >
-                <ContentView>
+            IsEnabled="True">
 
-                    <VerticalStackLayout>
+            <ScrollView>
+                <VerticalStackLayout>
 
-                        <CollectionView
+                    <CollectionView 
                         Grid.Row="0"
                         ItemsSource="{Binding Coupons}"
                         SelectionMode="None"
-                        IsVisible="{Binding ShowNotCollected}"
-                     >
-                            <CollectionView.EmptyView>
-                                <Label FontSize="20">Nie znaleziono kuponów</Label>
-                            </CollectionView.EmptyView>
-                            <CollectionView.ItemTemplate >
-                                <DataTemplate  x:DataType="model:Coupon">
-                                    <Frame Margin="10">
-                                        <VerticalStackLayout Spacing="6">
-                                            <Label FontSize="24" Text="{Binding Name}"></Label>
-                                            <Label FontAttributes="Bold" Text="{Binding CompanyName}"></Label>
-                                            <Label Text="{Binding Description}"></Label>
-                                            <Button FontSize="16" FontAttributes="Bold" Text="{Binding Price}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CouponsViewModel}}, Path=BuyCommand}" CommandParameter="{Binding Id}" />
-                                        </VerticalStackLayout>
-                                    </Frame>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                        <CollectionView
+                        IsVisible="{Binding ShowNotCollected}">
+                            
+                        <CollectionView.EmptyView>
+                            <Label FontSize="20">Nie znaleziono kuponów</Label>
+                        </CollectionView.EmptyView>
+                            
+                        <CollectionView.ItemTemplate >
+                            <DataTemplate  x:DataType="model:Coupon">
+                                <Frame Margin="10">
+                                    <VerticalStackLayout Spacing="6">
+                                        <Label FontSize="24" Text="{Binding Name}"></Label>
+                                        <Label FontAttributes="Bold" Text="{Binding CompanyName}"></Label>
+                                        <Label Text="{Binding Description}"></Label>
+                                        <Button FontSize="16" FontAttributes="Bold" Text="{Binding Price}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CouponsViewModel}}, Path=BuyCommand}" CommandParameter="{Binding Id}" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                            
+                    </CollectionView>
+                    
+                    <CollectionView
                         Grid.Row="0"
                         ItemsSource="{Binding CouponsCollected}"
                         SelectionMode="None"
-                        IsVisible="{Binding ShowCollected}"
-                     >
-                            <CollectionView.EmptyView>
-                                <Label FontSize="20">Nie znaleziono kuponów</Label>
-                            </CollectionView.EmptyView>
-                            <CollectionView.ItemTemplate >
-                                <DataTemplate  x:DataType="model:Coupon">
-                                    <Frame Margin="10">
-                                        <VerticalStackLayout Spacing="6">
-                                            <Label FontSize="24" Text="{Binding Name}"></Label>
-                                            <Label FontAttributes="Bold" Text="{Binding CompanyName}"></Label>
-                                            <Label Text="{Binding Description}"></Label>
-
-                                            <Label Text="Twój kod rabatowy" HorizontalTextAlignment="Center" />
-                                            <Label FontSize="16" FontAttributes="Bold" Text="{Binding Code}" HorizontalTextAlignment="Center" />
-
-                                            <Label Text="Data ważności " FontSize="10" HorizontalTextAlignment="Center" />
-                                            <Label FontSize="10" FontAttributes="Bold" Text="{Binding ExpirationDate}" HorizontalTextAlignment="Center" />
-                                        </VerticalStackLayout>
-                                    </Frame>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </VerticalStackLayout>
-                </ContentView>
-            </RefreshView>
-        </ScrollView>
+                        IsVisible="{Binding ShowCollected}">
+                            
+                        <CollectionView.EmptyView>
+                            <Label FontSize="20">Nie znaleziono kuponów</Label>
+                        </CollectionView.EmptyView>
+                            
+                        <CollectionView.ItemTemplate >
+                            <DataTemplate  x:DataType="model:Coupon">
+                                <Frame Margin="10">
+                                    <VerticalStackLayout Spacing="6">
+                                        <Label FontSize="24" Text="{Binding Name}"></Label>
+                                        <Label FontAttributes="Bold" Text="{Binding CompanyName}"></Label>
+                                        <Label Text="{Binding Description}"></Label>
+                                            
+                                        <Label Text="Twój kod rabatowy" HorizontalTextAlignment="Center" />
+                                        <Label FontSize="16" FontAttributes="Bold" Text="{Binding Code}" HorizontalTextAlignment="Center" />
+                                            
+                                        <Label Text="Data ważności " FontSize="10" HorizontalTextAlignment="Center" />
+                                        <Label FontSize="10" FontAttributes="Bold" Text="{Binding ExpirationDate}" HorizontalTextAlignment="Center" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                            
+                    </CollectionView>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>
         <Grid Grid.Row="1" ColumnDefinitions="*, *" ColumnSpacing="10" Margin="10">
             <Label Text="Pokaż odebrane nagrody" Grid.Column="0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
             <Switch  IsToggled="{Binding ShowCollected}" Grid.Column="1" HorizontalOptions="Start"/>

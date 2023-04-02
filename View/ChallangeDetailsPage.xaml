@@ -32,21 +32,23 @@
                        VerticalOptions="Center"
                         />
                 </Border>
-
-                <Button Text="{Binding challangeTypeCommand}"
-                        Grid.Row="1"
+                <Button Text="Zakończ" 
                         Command="{Binding ActionCommand}"
                         HorizontalOptions="Center" 
                         WidthRequest="200" 
+                        IsVisible="{Binding IsVisible}"
                         Margin="8"
-                        Style="{StaticResource ButtonOutline}"/>
-                <Border Margin="10,0,10,0" 
-                        Grid.Row="2"
-                        StrokeShape="RoundRectangle 10"
-                        BackgroundColor="{StaticResource Secondary}"
-                        Stroke="{StaticResource Primary}">
-                    <Label  Text = "{Binding Challange.Description}" Margin = "5"/>
-                </Border>
+                        Style="{StaticResource ButtonOutline}"
+                        BackgroundColor="{Binding AcctionColour}"/>
+                <Button Text="Zawiodłeś" 
+                        Command="{Binding ActionCommand}"
+                        HorizontalOptions="Center" 
+                        WidthRequest="200" 
+                        IsVisible="{Binding IsHidden}"
+                        Margin="8"
+                        Style="{StaticResource ButtonOutline}"
+                        BackgroundColor="{Binding AcctionColour}"/>
+                <Label Text = "{Binding Challange.Description}" Margin = "5"/>
             </VerticalStackLayout>
         </Grid>
 

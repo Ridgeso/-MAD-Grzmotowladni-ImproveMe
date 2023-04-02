@@ -69,24 +69,30 @@ public class ChallangeService
         return await Database.Table<Challange>().ToListAsync();
     }
 
-    public async Task UpdateChallange(Challange challange, bool Action)
+    public async Task<bool> UpdateChallange(Challange challange, bool Action)
     {
         await Init();
         var difference = DateTime.Now.Day - challange.LastChecked.Day;
         User user = await _userService.GetUserAsync();
+        bool failed = false;
 
         if (challange.Type == ChallangeType.Routine && Action)
         {
             if (difference < challange.Period)
-                return;
+                return failed;
 
             if (difference == challange.Period)
             {
                 challange.Streak++;
                 await _userService.AddExpPoints(user, _userService.CalcExpByStreak(challange.Streak));
+
+                failed = false;
             }
             else
+            {
                 challange.Streak = 0;
+                failed = true;
+            }
             challange.LastChecked = DateTime.Now;
         }
         else if (challange.Type != ChallangeType.Abstinence && !Action)
@@ -95,17 +101,22 @@ public class ChallangeService
             {
                 challange.LastChecked = DateTime.Now;
                 challange.Streak = 0;
+                failed = true;
             }
             else
             {
                 challange.Streak = (long)Math.Ceiling((Decimal)(DateTime.Now.Day - challange.LastChecked.Day) / challange.Period);
-                
+
                 await _userService.AddExpPoints(user, _userService.CalcExpByStreak(challange.Streak));
+
+                failed = false;
             }
         }
 
         await _badgeService.UpdateRank(challange);
 
         await Database.UpdateAsync(challange);
+
+        return failed;
     }
 }
