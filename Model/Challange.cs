@@ -12,9 +12,11 @@ public class Challange
             
     public ChallangeType Type { get; set; }
 
-    public DateTime Start { get; set; }
+    public long Streak { get; set; }
 
-    public DateTime Checked { get; set; }
+    public DateTime LastChecked { get; set; }
+
+    public long Period { get; set; }
         
     [ForeignKey(nameof(User))]
     public long UserId { get; set; }

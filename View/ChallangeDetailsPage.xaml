@@ -54,7 +54,7 @@
                         WidthRequest="160"/>
                 </Border>
                 <Button Text="Action" 
-                        Command="{Binding OpenMapCommand}"
+                        Command="{Binding ActionCommand}"
                         HorizontalOptions="Center" 
                         WidthRequest="200" 
                         
