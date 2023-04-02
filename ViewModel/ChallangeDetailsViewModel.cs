@@ -16,6 +16,9 @@ public partial  class ChallangeDetailsViewModel : BaseViewModel
     [ObservableProperty]
     Challange challange;
 
+
+    
+
     [RelayCommand]
     public async Task DeleteChallangeAsync(Challange challangeToDelete)
     {

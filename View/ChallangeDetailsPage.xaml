@@ -11,51 +11,42 @@
             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ChallangeDetailsViewModel}}, Path=GoToUserDetailsCommand}"/>
     </ContentPage.ToolbarItems>
     <Grid RowDefinitions="Auto,*,Auto">
-        <BoxView
-                BackgroundColor="{StaticResource Primary}"
-                Grid.ColumnSpan="2"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"/>
 
         
-            
-            <!--<Image Aspect="AspectFill"
-                        HeightRequest="160"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Source="{Binding Monkey.Image}"
-                        WidthRequest="160"/>-->
-        <Grid Padding="0" Grid.Row="1" ColumnDefinitions="*">
+        <Grid Padding="0" Grid.Row="0" RowDefinitions="*,*,*">
             
             <VerticalStackLayout 
                 HorizontalOptions="Center"
                 VerticalOptions="StartAndExpand"
-                Grid.Column="1"
+                Grid.Column="0"
                 Padding="10">
                 <Border StrokeShape="RoundRectangle 80"
-                    Stroke="#FF7700"                    
-                    StrokeThickness="6"
+                        Grid.Row="0"
+                    Stroke="{StaticResource Secondary}"                    
+                    StrokeThickness="2"
                     HeightRequest="160"
-                    WidthRequest="160"
-                    Margin="0,8,0,0"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center">
+                    WidthRequest="160">
                     <Label 
-                        HeightRequest="160"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Text="1"
-                        TextColor="Black"
-                        WidthRequest="160"/>
+                       Text="{Binding Challange.Name}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                        />
                 </Border>
-                <Button Text="Action" 
+
+                <Button Text="{Binding challangeTypeCommand}"
+                        Grid.Row="1"
                         Command="{Binding ActionCommand}"
                         HorizontalOptions="Center" 
                         WidthRequest="200" 
-                        
                         Margin="8"
                         Style="{StaticResource ButtonOutline}"/>
-                <Label Text = "{Binding Challange.Description}" Margin = "5"/>
+                <Border Margin="10,0,10,0" 
+                        Grid.Row="2"
+                        StrokeShape="RoundRectangle 10"
+                        BackgroundColor="{StaticResource Secondary}"
+                        Stroke="{StaticResource Primary}">
+                    <Label  Text = "{Binding Challange.Description}" Margin = "5"/>
+                </Border>
             </VerticalStackLayout>
         </Grid>
 
