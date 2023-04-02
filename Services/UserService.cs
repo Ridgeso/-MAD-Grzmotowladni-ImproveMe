@@ -39,7 +39,8 @@ public class UserService
             Points = 0,
             Level = 1,
             LastLogged = DateTime.Now,
-            Streak = 0
+            Streak = 0,
+            Coins = 0,
         };
 
         await Database.InsertAsync(user);

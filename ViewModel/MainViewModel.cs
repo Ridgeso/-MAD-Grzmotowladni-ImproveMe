@@ -79,6 +79,15 @@ public partial class MainViewModel : BaseViewModel
             true,
             new Dictionary<string, object> { }
         );
+    }  
+    
+    [RelayCommand]
+    async Task GoToCoupons()
+    {
+        await Shell.Current.GoToAsync(
+            nameof(CouponsPage),
+            true
+        );
     }
 
     private async void givePointsForLoggin()
