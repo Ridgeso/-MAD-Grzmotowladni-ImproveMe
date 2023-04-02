@@ -16,15 +16,6 @@
                 Grid.ColumnSpan="2"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"/>
-
-        
-            
-            <!--<Image Aspect="AspectFill"
-                        HeightRequest="160"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Source="{Binding Monkey.Image}"
-                        WidthRequest="160"/>-->
         <Grid Padding="0" Grid.Row="1" ColumnDefinitions="*">
             
             <VerticalStackLayout 
@@ -48,13 +39,22 @@
                         TextColor="Black"
                         WidthRequest="160"/>
                 </Border>
-                <Button Text="Action" 
+                <Button Text="Zakończ" 
                         Command="{Binding ActionCommand}"
                         HorizontalOptions="Center" 
                         WidthRequest="200" 
-                        
+                        IsVisible="{Binding IsVisible}"
                         Margin="8"
-                        Style="{StaticResource ButtonOutline}"/>
+                        Style="{StaticResource ButtonOutline}"
+                        BackgroundColor="{Binding AcctionColour}"/>
+                <Button Text="Zawiodłeś" 
+                        Command="{Binding ActionCommand}"
+                        HorizontalOptions="Center" 
+                        WidthRequest="200" 
+                        IsVisible="{Binding IsHidden}"
+                        Margin="8"
+                        Style="{StaticResource ButtonOutline}"
+                        BackgroundColor="{Binding AcctionColour}"/>
                 <Label Text = "{Binding Challange.Description}" Margin = "5"/>
             </VerticalStackLayout>
         </Grid>

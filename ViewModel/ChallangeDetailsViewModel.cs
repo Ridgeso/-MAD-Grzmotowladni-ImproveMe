@@ -1,8 +1,10 @@
 ﻿
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace ImproveMe.ViewModel;
 
 [QueryProperty(nameof(Challange), "Challange")]
-public partial  class ChallangeDetailsViewModel : BaseViewModel
+public partial class ChallangeDetailsViewModel : BaseViewModel
 {
     ChallangeService challangeService;
     UserService userService;
@@ -15,6 +17,15 @@ public partial  class ChallangeDetailsViewModel : BaseViewModel
 
     [ObservableProperty]
     Challange challange;
+
+    [ObservableProperty]
+    Color m_AcctionColour;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsHidden))]
+    bool isVisible;
+
+    public bool IsHidden => !IsVisible;
 
     [RelayCommand]
     public async Task DeleteChallangeAsync(Challange challangeToDelete)
@@ -36,7 +47,13 @@ public partial  class ChallangeDetailsViewModel : BaseViewModel
     [RelayCommand]
     async Task ActionAsync()
     {
-        await challangeService.UpdateChallange(challange, true);
+        bool faild = await challangeService.UpdateChallange(challange, true);
+
+        if (faild)
+            AcctionColour = Colors.Red;
+        else
+            AcctionColour = Colors.Green;
+
     }
 
     [RelayCommand]
@@ -51,4 +68,9 @@ public partial  class ChallangeDetailsViewModel : BaseViewModel
         });
     }
 
+
+    partial void OnChallangeChanged(Challange value)
+    {
+        IsVisible = Challange.Type == ChallangeType.Routine;
+    }
 }
