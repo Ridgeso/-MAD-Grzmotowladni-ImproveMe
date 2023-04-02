@@ -5,24 +5,6 @@
              x:Class="ImproveMe.App">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- Main Page -->
-            <Color x:Key="Primary">#FFF200</Color>
-            <Color x:Key="PrimaryDark">#DACF00</Color>
-            <Color x:Key="Accent">#00BCD4</Color>
-
-            <Color x:Key="Secondary">#FF7700</Color>
-            <Color x:Key="SecondaryDark">#D06100</Color>
-
-            <Color x:Key="LightBackground">#FFFEEE</Color>
-            <Color x:Key="DarkBackground">#191800</Color>
-
-            <Color x:Key="LabelText">#1F1F1F</Color>
-            <Color x:Key="LabelTextDark">White</Color>
-            
-            <Image x:Key="UserIcon" Source="/Resources/Images/user.png"></Image>
-
-            <Style ApplyToDerivedTypes="True" TargetType="Page">
-            </Style>
 
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
@@ -53,14 +35,7 @@
                 <Setter Property="RefreshColor" Value="{StaticResource Primary}" />
             </Style>
 
-            <Style x:Key="ButtonOutline" TargetType="Button">
-                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
-                <Setter Property="TextColor" Value="{StaticResource Secondary}" />
-                <Setter Property="BorderColor" Value="{StaticResource Secondary}" />
-                <Setter Property="BorderWidth" Value="2" />
-                <Setter Property="HeightRequest" Value="40" />
-                <Setter Property="CornerRadius" Value="20" />
-            </Style>
+
             <Style x:Key="CardView" TargetType="Frame">
                 <Setter Property="BorderColor" Value="#DDDDDD" />
                 <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
