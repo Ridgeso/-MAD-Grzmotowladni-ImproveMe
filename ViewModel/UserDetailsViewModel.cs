@@ -4,14 +4,30 @@ namespace ImproveMe.ViewModel;
 [QueryProperty(nameof(User), "User")]
 public partial class UserDetailsViewModel : BaseViewModel
 {
-    UserService m_UserService;
+    UserService _userService;
+    ChallangeService _challangeService;
+    
     
     [ObservableProperty]
     User user;
 
-    public UserDetailsViewModel(UserService service)
+    [ObservableProperty]
+    int challangesCount;
+    public UserDetailsViewModel(UserService service, ChallangeService challangeService)
     {
-        m_UserService = service;
+        _userService = service;
+        _challangeService = challangeService;
+    }
+
+    partial void OnUserChanged(User value)
+    {
+        Title = $"{value.Name} {value.LastName}";
+        SetChallangesCount();
+    }
+
+    public async void SetChallangesCount()
+    {
+        ChallangesCount = (await _challangeService.GetChellenges()).Count();
     }
 }
 

@@ -1,45 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ImproveMe.View.UserDetailsPage"
              xmlns:viewmodel="clr-namespace:ImproveMe.ViewModel"
+             x:Class="ImproveMe.View.UserDetailsPage"
              xmlns:model="clr-namespace:ImproveMe.Model"
-             Title="User">
-    <ScrollView
-        BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
-        <Grid RowDefinitions="Auto,*,*" ColumnDefinitions="*,*">
-            <BoxView
-                BackgroundColor="yellow"
-                Grid.Row="0"
-                Grid.RowSpan="1"
-                Grid.ColumnSpan="2"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"/>
-
-            <Border StrokeShape="RoundRectangle 80"
-                    Stroke="black"
-                    Grid.Column="1"
-                    StrokeThickness="4"
-                    HeightRequest="80"
-                    WidthRequest="80"
-                    Margin="0,8,20,0"
-                    HorizontalOptions="End"
-                    VerticalOptions="Start">
-            </Border>
-
-            <Label Style="{StaticResource LargeLabel}" 
-                   Grid.Row="0"
-                   Grid.Column="0"
-                   TextColor="Black"
-                   FontAttributes="Bold"
-                   Text="{Binding User.Name}" 
-                   VerticalOptions="Center"
-                   HorizontalOptions="StartAndExpand"
-                   Margin="10,10,0,8"/>
-
-
-            <Grid Grid.Row="1"  Grid.ColumnSpan="2" RowDefinitions="*,*,*" ColumnDefinitions="*,*" Padding="10" >
-
+             Title="{Binding Title}">
+    <VerticalStackLayout Margin="10">
                 <Label Grid.Row="0" 
                        Grid.Column="0"
                         Text="Statystyki" 
@@ -48,9 +14,12 @@
                         WidthRequest="200" 
                         Margin="0,10,0,8"
                         FontSize="25" />
+        
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+
                 
                 <Border StrokeShape="RoundRectangle 90"
-                        Grid.Row="1"     
+                        Grid.Row="0"     
                         Grid.Column="0"
                         Margin="8"
                         Stroke="{StaticResource Secondary}"
@@ -61,20 +30,20 @@
                           ColumnDefinitions="Auto,Auto"
                           Margin="20,10,10,10"
                           ColumnSpacing="15">
-                        <Label Grid.Row="0"     
-                               Grid.Column="0" Text="+++"/>
-                        <Label Grid.Row="0" 
+                    <Image Grid.Row="0"   
+                               Grid.Column="0" Grid.RowSpan="2" MaximumHeightRequest="30" MaximumWidthRequest="30" Source="/Resources/Images/trophy.png"/>
+                    <Label Grid.Row="0" 
                                HorizontalOptions="Start"
                                VerticalOptions="Center"
-                               Grid.Column="1" Text="{Binding User.Streak}"/>
+                               Grid.Column="1" Text="{Binding User.Level}"/>
                         <Label Grid.Row="1"     
                                Grid.Column="1" 
                                HorizontalOptions="Start"
-                               Text="Dni z rzędu"/>
+                               Text="Poziom"/>
                     </Grid>
                 </Border>
                 <Border StrokeShape="RoundRectangle 90"
-                        Grid.Row="1"     
+                        Grid.Row="0"     
                         Grid.Column="1"
                         Margin="8"
                         Stroke="{StaticResource Secondary}"
@@ -85,32 +54,33 @@
                           ColumnDefinitions="Auto,Auto"
                           Margin="20,10,10,10"
                           ColumnSpacing="15">
-                        <Label Grid.Row="0"   
-                               Grid.Column="0" Text="+++"/>
-                        <Label Grid.Row="0" 
+                    <Image Grid.Row="0"   
+                               Grid.Column="0" Grid.RowSpan="2" MaximumHeightRequest="30" MaximumWidthRequest="30" Source="/Resources/Images/star.png"/>
+                    <Label Grid.Row="0" 
                                HorizontalOptions="Start"
                                VerticalOptions="Center"
                                Grid.Column="1" Text="{Binding User.Points}"/>
                         <Label Grid.Row="1"     
                                Grid.Column="1" 
                                HorizontalOptions="Start"
-                               Text="Suma punktów"/>
+                               Text="Punktów"/>
                     </Grid>
                 </Border>
                 <Border StrokeShape="RoundRectangle 90"
-                        Grid.Row="2"     
-                        Grid.Column="1"
+                        Grid.Row="1"     
+                        Grid.Column="0"
                         Margin="8"
                         Stroke="{StaticResource Secondary}"
                         StrokeThickness="2">
                     <Grid 
+                        
                           VerticalOptions="Center"
                           RowDefinitions="Auto,Auto" 
                           ColumnDefinitions="Auto,Auto"
                           Margin="20,10,10,10"
                           ColumnSpacing="15">
-                        <Label Grid.Row="0"   
-                               Grid.Column="0" Text="+++"/>
+                        <Image Grid.Row="0"   
+                               Grid.Column="0" Grid.RowSpan="2"  MaximumHeightRequest="30" MaximumWidthRequest="30" Source="/Resources/Images/coin.png"/>
                         <Label Grid.Row="0" 
                                HorizontalOptions="Start"
                                VerticalOptions="Center"
@@ -118,12 +88,12 @@
                         <Label Grid.Row="1"     
                                Grid.Column="1" 
                                HorizontalOptions="Start"
-                               Text="medale"/>
+                               Text="Monet"/>
                     </Grid>
                 </Border>
                 <Border StrokeShape="RoundRectangle 90"
-                        Grid.Row="2"     
-                        Grid.Column="0"
+                        Grid.Row="1"    
+                        Grid.Column="1"
                         Margin="8"
                         Stroke="{StaticResource Secondary}"
                         StrokeThickness="2">
@@ -133,21 +103,19 @@
                           ColumnDefinitions="Auto,Auto"
                           Margin="20,10,10,10"
                           ColumnSpacing="15">
-                        <Label Grid.Row="0"    
-                               Grid.Column="0" Text="+++"/>
-                        <Label Grid.Row="0" 
+                    <Image Grid.Row="0"   
+                               Grid.Column="0" Grid.RowSpan="2" MaximumHeightRequest="30" MaximumWidthRequest="30" Source="/Resources/Images/medal.png"/>
+                    <Label Grid.Row="0" 
                                HorizontalOptions="StartAndExpand"
                                VerticalOptions="Center"
-                               Grid.Column="1" Text="0"/>
+                               Grid.Column="1" Text="{Binding ChallangesCount}"/>
                         <Label Grid.Row="1"     
                                Grid.Column="1" 
                                HorizontalOptions="StartAndExpand"
-                               Text="Rank"/>
+                               Text="Wyzwań"/>
                     </Grid>
                 </Border>
 
-            </Grid>
-
-        </Grid>
-    </ScrollView>
+    </Grid>
+    </VerticalStackLayout>
 </ContentPage>
