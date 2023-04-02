@@ -14,6 +14,8 @@ public partial class MainViewModel : BaseViewModel
     {
         Title = "ImproveMe";
         m_ChallangeService = challangeService;
+
+        GetChallangesAsync();
         _userService = userService;
 
         givePointsForLoggin();
@@ -60,15 +62,9 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task GoToUserDetails(User user)
+    async Task GoToUserDetails()
     {
-        if (user == null)
-            return;
-
-        await Shell.Current.GoToAsync(nameof(UserDetailsPage), true, new Dictionary<string, object>
-        {
-            { "User", user }
-        });
+        await Shell.Current.GoToAsync(nameof(UserDetailsPage), true);
     }
 
     [RelayCommand]
