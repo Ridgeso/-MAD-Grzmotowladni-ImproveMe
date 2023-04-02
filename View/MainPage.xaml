@@ -6,10 +6,16 @@
     xmlns:viewmodel="clr-namespace:ImproveMe.ViewModel"
     xmlns:model="clr-namespace:ImproveMe.Model"
     Title="{Binding Title}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
-            IconImageSource="/Resources/Images/user.png"
-            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=GoToUserDetailsCommand}"/>
+    <ContentPage.ToolbarItems FlexLayout.Grow="1"  >
+
+        <ToolbarItem  IconImageSource="/Resources/Images/star.png"/>
+        <ToolbarItem Text="{Binding User.Level}"/>
+        <ToolbarItem IconImageSource="/Resources/Images/coin.png"/>
+        <ToolbarItem Text="{Binding User.Coins}"/>
+        <ToolbarItem  IconImageSource="/Resources/Images/user.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=GoToUserDetailsCommand}"/>
+
+        
+
     </ContentPage.ToolbarItems>
     <Grid
         ColumnDefinitions="*,*"

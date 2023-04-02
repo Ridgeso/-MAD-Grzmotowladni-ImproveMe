@@ -49,6 +49,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\coin.png" />
+	  <None Remove="Resources\Images\star.png" />
 	  <None Remove="Resources\Images\user.png" />
 	</ItemGroup>
 
