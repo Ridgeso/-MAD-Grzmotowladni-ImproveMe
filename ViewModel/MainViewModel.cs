@@ -113,10 +113,9 @@ public partial class MainViewModel : BaseViewModel
                 user.Streak = 0;
                 break;
         }
-
+        user.Coins = 10000;
         user.LastLogged = DateTime.Now;
         await _userService.UpdateUser(user);
-
     }
 
 }

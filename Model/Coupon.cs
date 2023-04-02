@@ -9,7 +9,7 @@
         public string CompanyName { get; set; }
         public uint Price { get; set; }
         public string Code { get; set; }
-        public bool Collected { get; set; } = false;
+        public bool Collected { get; set; }
         public DateTime ExpirationDate { get; set; }
     }
 }

@@ -58,7 +58,6 @@
                                             <Label Style="{StaticResource MediumLabel}" Text="{Binding Type}" />
                                         </VerticalStackLayout>
                                     </Grid>
-                                    
                                 </Frame>
                             </Grid>
                         </DataTemplate>

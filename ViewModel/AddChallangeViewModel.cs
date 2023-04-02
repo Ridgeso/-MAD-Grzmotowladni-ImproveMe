@@ -13,7 +13,7 @@ namespace ImproveMe.ViewModel
         string description;
         
         [ObservableProperty]
-        int type;
+        int cType;
 
         [ObservableProperty]
         bool showNameError = false;
@@ -45,7 +45,7 @@ namespace ImproveMe.ViewModel
                     Description = Description,
                     Start = DateTime.Now,
                     UserId = user.Id,
-                    Type = (ChallangeType)Type
+                    Type = (ChallangeType)CType
                 };
 
                 if (Validate()) {

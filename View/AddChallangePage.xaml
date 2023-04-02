@@ -23,7 +23,7 @@
                 <Editor Placeholder="Opis" Text="{Binding Description}" AutoSize="TextChanges"/>
                 <Label Text="Opis nie może pozostać pusty" TextColor="Red" IsVisible="{Binding ShowDescriptionError}"/>
             </StackLayout>
-            <StackLayout RadioButtonGroup.GroupName="type" RadioButtonGroup.SelectedValue="{Binding Type}">
+            <StackLayout RadioButtonGroup.GroupName="type" RadioButtonGroup.SelectedValue="{Binding CType}">
                 <Label Text="Typ"/>
                 <RadioButton Content="Rutyna" Value="0" IsChecked="True"/>
                 <RadioButton Content="Abstynencja"  Value="1" />

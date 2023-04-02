@@ -3,9 +3,17 @@
 
     public class CouponService
     {
-    SQLiteAsyncConnection Database;
-        async void Init()
+
+        SQLiteAsyncConnection Database;
+        private readonly UserService _userService;
+        public CouponService(UserService userService)
         {
+            _userService = userService;
+        }
+
+        async Task Init()
+        {
+          
             if (Database is not null)
                 return;
 
@@ -21,14 +29,14 @@
 
         public async Task<List<Coupon>> GetCouponsAsync()
         {
-            Init();
+            await Init();
 
             return await Database.Table<Coupon>().ToListAsync();
         }
 
         private async Task<List<Coupon>> GeneratesCouponsAsync()
         {
-            Init();
+            await Init();
 
             var coupons = new List<Coupon>()
             {
@@ -39,6 +47,7 @@
                     CompanyName = "FitnessPol",
                     Price = 10000,
                     Code = "asbkdbksbhds131",
+                    Collected = false,
                 },
                 new Coupon() 
                 {
@@ -47,6 +56,7 @@
                     CompanyName = "BikeWorld",
                     Price = 8000,
                     Code = "hwdhbdkhwabhdwa",
+                    Collected = false,
                 },
                 new Coupon() 
                 {
@@ -55,6 +65,7 @@
                     CompanyName = "Umber",
                     Price = 2000,
                     Code = "jnajsdjad",
+                    Collected = false,
                 },
                 new Coupon() 
                 {
@@ -63,6 +74,7 @@
                     CompanyName = "Usługi psychologiczne Anna Nowak",
                     Price = 15000,
                     Code = "sdbshakdbsakbd",
+                    Collected = false,
                 },
                 new Coupon() 
                 {
@@ -71,6 +83,7 @@
                     CompanyName = "FizjoMed",
                     Price = 4000,
                     Code = "1273yebsj",
+                    Collected = false,
                 },
             };
 
@@ -78,7 +91,25 @@
 
             return coupons;
         }
+        public async Task<Coupon> Buy(long id)
+        {
+            await Init();
+
+            var user = await _userService.GetUserAsync();
+            var coupon = await Database.Table<Coupon>().Where(e => e.Id == id).FirstOrDefaultAsync();
+
+            if (user.Coins < coupon.Price)
+                throw new Exception("Nie posiadasz wystarczająco dużo monet aby odebrać tę nagrodę.");
+
+            user.Coins -= coupon.Price;
+            coupon.Collected = true;
+            coupon.ExpirationDate = DateTime.Now.AddDays(14);
+
+            await _userService.UpdateUser(user);
+            await Database.UpdateAsync(coupon);
+
+            return coupon;
+        }
     }
 
-   
 }
