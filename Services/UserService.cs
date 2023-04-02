@@ -62,6 +62,8 @@ public class UserService
 
         user.Level = CalcLevel(user.Points, user.Level);
 
+        user.Coins += (uint)4 * user.Level;
+
         await UpdateUser(user);
 
         return user;
